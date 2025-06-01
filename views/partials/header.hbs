@@ -1,0 +1,44 @@
+<div class="h-24 bg-[var(--color-bg-header)] border-b-4">
+  <div class="flex items-end h-full">
+    <div class="relative w-full flex justify-center">
+      <h1 class="font-heading text-3xl leading-none mb-2">{{ heading }}</h1>
+      <div class="absolute right-2 bottom-[2px]">
+        <div>
+          <sl-icon-button id="header-menu" class="text-3xl" name="list" label="Menu"></sl-icon-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<sl-drawer id="header-drawer">
+  <div class="grid grid-cols-1 gap-4">
+    <div>
+      <a class="text-2xl font-heading" href="/">Home</a>
+    </div>
+    <div>
+      <a class="text-2xl font-heading" href="/about">About</a>
+    </div>
+    <div>
+      <a class="text-2xl font-heading" href="/portfolio">Portfolio</a>
+    </div>
+    <div>
+      <a class="text-2xl font-heading" href="/shop">Shop</a>
+    </div>
+    <div>
+      <a class="text-2xl font-heading" href="/retail-locations">Retail Locations</a>
+    </div>
+    <div>
+      <a class="text-2xl font-heading" href="/commissions">Commissions</a>
+    </div>
+    <div>
+      <a class="text-2xl font-heading" href="/events">Events</a>
+    </div>
+  </div>
+</sl-drawer>
+
+<script type="module">
+  document.querySelector('#header-menu').addEventListener('click', () => {
+    document.querySelector('#header-drawer').show();
+  });
+</script>

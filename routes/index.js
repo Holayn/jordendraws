@@ -1,11 +1,91 @@
+const path = require('path');
+const fs = require('fs');
+const hbs = require('hbs');
 const express = require('express');
 const router = express.Router();
+
 // const stripe = require('stripe')('');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index');
+const partialsDir = path.join(__dirname, '../views/partials');
+fs.readdirSync(partialsDir).forEach(filename => {
+  const matches = /^([^.]+).hbs$/.exec(filename);
+  if (!matches) {
+    return;
+  }
+  const name = matches[1];
+  const template = fs.readFileSync(path.join(partialsDir, filename), 'utf8');
+  hbs.registerPartial(name, template);
 });
+
+router.get('/', (req, res, next) => {
+  res.render('index', { heading: 'jordendraws' });
+});
+
+router.get('/portfolio', (req, res, next) => {
+  res.render('portfolio', { heading: 'portfolio' });
+});
+router.get('/portfolio/dragons', (req, res, next) => {
+  res.render('portfolio-category', { 
+    heading: 'dragons',
+    items: [
+      {
+        source: '/images/dragon_nature.png',
+        title: 'Nature Dragon',
+      },
+      {
+        source: '/images/dragon_nature_2.png',
+        title: 'Nature Dragon',
+      },
+      {
+        source: '/images/dragon_nature_winged.png',
+        title: 'Nature Dragon',
+      },
+      {
+        source: '/images/dragon_paradise.png',
+        title: 'Nature Dragon',
+      }
+    ]
+  });
+});
+router.get('/portfolio/hawaii', (req, res, next) => {
+  res.render('portfolio-category', { 
+    heading: 'hawaii',
+    items: []
+  });
+});
+router.get('/portfolio/characters', (req, res, next) => {
+  res.render('portfolio-category', { 
+    heading: 'hawaii',
+    items: []
+  });
+});
+router.get('/portfolio/traditional-art', (req, res, next) => {
+  res.render('portfolio-category', { 
+    heading: 'traditional art',
+    items: []
+  });
+});
+
+router.get('/about', (req, res, next) => {
+  res.render('about', { heading: 'about' });
+});
+
+router.get('/shop', (req, res, next) => {
+  res.render('shop', { heading: 'shop' });
+});
+
+router.get('/retail-locations', (req, res, next) => {
+  res.render('retail-locations', { heading: 'retail-locations' });
+});
+
+router.get('/commissions', (req, res, next) => {
+  res.render('commissions', { heading: 'commissions' });
+});
+
+router.get('/events', (req, res, next) => {
+  res.render('events', { heading: 'events' });
+});
+
 
 router.get('/create-checkout-session', async (req, res) => {
   try {

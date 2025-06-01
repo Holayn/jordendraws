@@ -1,4 +1,32 @@
-<div class="w-screen h-screen flex flex-col items-center justify-center text-center">
-  <b>jordendraws</b>
-  <div class="mt-4">coming soon...</div>
-</div>
+{{#> shell}}
+  <div>
+    <div class="mt-4 mb-2 flex justify-center"> 
+      <div class="flex gap-2 text-2xl">
+        <a class="font-heading" href="/about">About</a>
+        <div class="font-heading">-</div>
+        <a class="font-heading" href="/portfolio">Portfolio</a>
+        <div class="font-heading">-</div>
+        <a class="font-heading" href="/shop">Shop</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="mx-8 mb-4 flex justify-center">
+        <sl-input class="w-full max-w-xs" size="small" placeholder="Search...">
+          <sl-icon slot="suffix" class="mr-2" name="search"></sl-icon>
+        </sl-input>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-auto -mx-4">
+    <sl-carousel class="h-full" navigation loop autoplay style="--aspect-ratio: 8/10;">
+      <sl-carousel-item>
+        <img src="/images/dragon_nature.png" alt="nature dragon">
+      </sl-carousel-item>
+      <sl-carousel-item>
+        <img src="/images/spam_bot.png" alt="spam bot">
+      </sl-carousel-item>
+    </sl-carousel>
+  </div>
+{{/shell}}

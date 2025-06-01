@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+@theme static {
+  --color-bg-header: #7e9f7f;
+  --color-bg-body: #E4DAD7;
+  --color-bg-footer: #415465;
+}
+
+@theme {
+  --font-heading: PASTI, sans-serif;
+  --font-sans: Arial;
+}
+
+@font-face {
+  font-family: 'PASTI';
+  src: url('../fonts/PASTI-Regular.woff2') format('woff2'),
+      url('../fonts/PASTI-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  height: 100%;
+}
+
+sl-icon-button::part(base) {
+  color: black;
+}

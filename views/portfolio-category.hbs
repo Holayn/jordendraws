@@ -1,0 +1,62 @@
+<style>
+  sl-dialog::part(panel) {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  sl-dialog::part(body) {
+    flex: 1 1 auto;
+    overflow: auto;
+  }
+  sl-dialog::part(title) {
+    padding: 4px;
+  }
+  sl-dialog::part(header-actions) {
+    padding: 4px;
+  }
+</style>
+
+{{#> shell}}
+  <div class="mt-4">
+    <div class="mx-8 flex justify-center">
+      <sl-input class="w-full max-w-xs" size="small" placeholder="Search...">
+        <sl-icon slot="suffix" class="mr-2" name="search"></sl-icon>
+      </sl-input>
+    </div>
+  </div>
+
+  <div class="mt-8 mb-16 px-4">
+    <div class="grid grid-cols-2 gap-y-16 gap-x-8">
+      {{#if items}}
+        {{#each items}}
+          <div>
+            <button class="block h-full w-full cursor-pointer js-view-image">
+              <img class="object-cover h-full w-full" src="{{source}}">
+            </button>
+            <div class="text-xs text-gray-700 mt-2">{{title}}</div>
+            <sl-dialog>
+              <div class="flex items-center justify-center h-full w-full"> 
+                <img src="{{source}}">
+              </div>
+            </sl-dialog>
+          </div>
+        {{/each}}
+      {{else}}
+        wow such empty
+      {{/if}}
+    </div>
+  </div>
+
+  <script type="module">
+    document.querySelectorAll('.js-view-image').forEach(el => {
+      el.addEventListener('click', () => {
+        el.parentElement.querySelector('sl-dialog').show();
+      });
+    });
+  </script>
+{{/shell}}
